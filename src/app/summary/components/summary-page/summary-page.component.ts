@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-summary-page',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _dataService: DataService) { }
+
+  covidData: any = {}
 
   ngOnInit(): void {
+    const data = this._dataService.getAllData()
+    .subscribe((data:any)=>{
+      this.covidData = data.data
+    })
+
   }
 
 }
