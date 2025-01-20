@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { DataService } from 'src/app/shared/services/data.service';
   templateUrl: './summary-page.component.html',
   styleUrls: ['./summary-page.component.sass']
 })
-export class SummaryPageComponent implements OnInit {
+export class SummaryPageComponent implements OnInit, OnDestroy {
 
   constructor(private _dataService: DataService) { }
 
@@ -17,7 +17,10 @@ export class SummaryPageComponent implements OnInit {
     .subscribe((data:any)=>{
       this.covidData = data.data
     })
+  }
 
+  ngOnDestroy(): void {
+    console.log('destroyed')
   }
 
 }

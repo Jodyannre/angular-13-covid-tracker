@@ -8,7 +8,14 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getAllData() {
+  private data: any
+
+
+  fetchAllData() {
     return this.http.get('https://covid-api.com/api/reports/total');
+  }
+
+  getAllData() {
+    return this.data
   }
 }
