@@ -4,7 +4,7 @@
       <div class="card-body">
         <i class="fa fa-check-square text-info"> </i>
         <h5 class="card-tittle">Confirmed</h5>
-        <p>{{summaryData.confirmed}}</p>
+        <p>{{summaryData?.confirmed | number}}</p>
       </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
       <div class="card-body">
         <i class="fa fa-times text-danger"> </i>
         <h5 class="card-tittle">Deaths</h5>
-        <p>{{summaryData.deaths}}</p>
+        <p>{{summaryData?.deaths | number}}</p>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
       <div class="card-body">
         <i class="fa fa-heart text-success"> </i>
         <h5 class="card-tittle">Recovered</h5>
-        <p>{{summaryData.recovered}}</p>
+        <p>{{summaryData?.recovered | number}}</p>
       </div>
     </div>
   </div>
