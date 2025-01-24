@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-summary-cards',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryCardsComponent implements OnInit {
 
+  @Input() covidData: any = {}
+
+  summaryData: any = {}
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    console.log(this.covidData)
+    this.summaryData = this.covidData
   }
 
 }

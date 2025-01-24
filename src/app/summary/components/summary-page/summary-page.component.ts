@@ -13,7 +13,7 @@ export class SummaryPageComponent implements OnInit, OnDestroy {
   covidData: any = {}
 
   ngOnInit(): void {
-    const data = this._dataService.getAllData()
+    const data = this._dataService.fetchAllData()
     .subscribe((data:any)=>{
       this.covidData = data.data
     })
