@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DataResolver } from './shared/services/data.resolver.service';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
   {
     path: 'summary',
     loadChildren: () => import('./summary/summary.module').then((m) => m.SummaryModule),
+    resolve: { summaryData: DataResolver},
   },
   {
     path: 'live',

@@ -17,7 +17,6 @@ export class SummaryCardsComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-    console.log(this.covidData)
     this.summaryData = this.covidData
   }
 

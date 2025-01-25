@@ -1,26 +1,25 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DataService } from 'src/app/shared/services/data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-summary-page',
   templateUrl: './summary-page.component.html',
   styleUrls: ['./summary-page.component.sass']
 })
-export class SummaryPageComponent implements OnInit, OnDestroy {
-
-  constructor(private _dataService: DataService) { }
+export class SummaryPageComponent implements OnInit {
 
   covidData: any = {}
+  covidDataCountries: any = {}
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const data = this._dataService.fetchAllData()
-    .subscribe((data:any)=>{
-      this.covidData = data.data
-    })
+    this.covidData = this.route.snapshot.data['summaryData'].covidData.data
+    this.covidDataCountries = this.route.snapshot.data['summaryData'].covidDataCountries
+   
+    console.log(this.covidData)
+    console.log(this.covidDataCountries)
   }
 
-  ngOnDestroy(): void {
-    console.log('destroyed')
-  }
 
 }
