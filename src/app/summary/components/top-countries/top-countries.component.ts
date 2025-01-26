@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TopCountriesComponent implements OnInit {
 
-  @Input() covidData: any
+  @Input() covidDataCountries: any
 
   constructor() { }
 
