@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-country-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountryPageComponent implements OnInit {
 
-  constructor() { }
+  countriesData: any;
+
+  constructor(private _dataService: DataService) { }
 
   ngOnInit(): void {
+    this._dataService.fetchCountries().subscribe((res: any) => {
+      this.countriesData = res.data
+    })
   }
 
 }

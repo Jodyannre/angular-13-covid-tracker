@@ -13,6 +13,11 @@ export class DataService {
     return this.http.get('https://covid-api.com/api/reports/total')
   }
 
+
+  fetchCountries() {
+    return this.http.get('https://covid-api.com/api/regions')
+  }
+
   fetchDataCountries() {
     const res = this.http.get('https://covid-api.com/api/reports?&per_page=40')
     .pipe(
