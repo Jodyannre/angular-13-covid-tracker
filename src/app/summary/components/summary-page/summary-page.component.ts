@@ -10,6 +10,7 @@ export class SummaryPageComponent implements OnInit {
 
   covidData: any = {}
   covidDataCountries: any = {}
+  countryToSearch: string = 'Japan'
 
   constructor(private route: ActivatedRoute) { }
 
@@ -19,6 +20,10 @@ export class SummaryPageComponent implements OnInit {
    
     console.log(this.covidData)
     console.log(this.covidDataCountries)
+  }
+
+  searchForACountry(searchTerm: string) {
+    this.countryToSearch = searchTerm
   }
 
 

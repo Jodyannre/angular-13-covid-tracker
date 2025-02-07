@@ -1,4 +1,4 @@
 <app-summary-cards [covidData]="covidData"></app-summary-cards>
 <app-top-countries [covidDataCountries]="covidDataCountries"></app-top-countries>
-<app-confirmed-by-country></app-confirmed-by-country>
-<app-country-chart></app-country-chart>
+<app-confirmed-by-country (country)="searchForACountry($event)"></app-confirmed-by-country>
+<app-country-chart [country]="countryToSearch"></app-country-chart>
