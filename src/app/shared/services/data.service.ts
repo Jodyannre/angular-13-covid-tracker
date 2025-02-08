@@ -1,25 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  apiUrl = environment.apiUrl
+
   constructor(private http: HttpClient) { }
 
   fetchAllData() {
-    return this.http.get('https://covid-api.com/api/reports/total')
+    return this.http.get(`${this.apiUrl}/reports/total`)
   }
 
 
   fetchCountries() {
-    return this.http.get('https://covid-api.com/api/regions')
+    return this.http.get(`${this.apiUrl}//regions`)
+  }
+
+  getCountryDataByDate(country: string, date: string) {
+    return this.http.get(`${this.apiUrl}/reports?date=${date}&iso=${country}&per_page=20`)
   }
 
   fetchDataCountries() {
-    const res = this.http.get('https://covid-api.com/api/reports?&per_page=40')
+    const res = this.http.get(`${this.apiUrl}/reports?&per_page=20`)
     .pipe(
       map((res: any) => {
         return res.data.filter((item:any) => {
