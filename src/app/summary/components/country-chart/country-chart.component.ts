@@ -13,9 +13,14 @@ export class CountryChartComponent implements OnInit, OnChanges {
 
 
   @Input() country: any = 'India'
-  barChartData: ChartDataSets[] = [ { data: [65, 59, 80, 81, 56, 55, 40] } ]
+  barChartData: ChartDataSets[] = 
+  [{ 
+    data: [],
+    label: 'Confirmed cases', 
 
-  barChartLabels: Label[] = ['USA', 'UK', 'Brazil', 'China', 'Nicaragua', 'Panama', 'Ivory Coast']
+    }]
+
+  barChartLabels: Label[] = []
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -38,6 +43,8 @@ export class CountryChartComponent implements OnInit, OnChanges {
     this._dataService.getCountryDataByDate(this.country, '2020-04-16')
     .subscribe((res: any) => {
       console.log(res)
+      this.barChartData[0].data = res.data.map((item: any) => item.confirmed)
+      this.barChartLabels = res.data.map((item: any) => item.region.province)
     })
   }
 
