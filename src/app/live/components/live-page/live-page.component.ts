@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts/highmaps';
 import * as worldMap from '@highcharts/map-collection/custom/world.geo.json';
+import { DataService } from 'src/app/shared/services/data.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,7 +12,9 @@ import * as worldMap from '@highcharts/map-collection/custom/world.geo.json';
 })
 export class LivePageComponent implements OnInit {
 
-  constructor() { }
+  liveData: any[] = []
+
+  constructor(private _dataService: DataService) { }
 
   Highcharts: typeof Highcharts = Highcharts;
   chartConstructor = 'mapChart';
@@ -58,6 +62,26 @@ export class LivePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._dataService.fetchDataCountriesRaw().subscribe((res: any) => {
+      this.liveData = res.data.map((obj: any) => {
+        return [obj.region.iso.toLowerCase().slice(0, 2), obj.confirmed]
+      })
+
+      this.chartOptions.series[0].data = this.liveData
+
+      this.Highcharts.mapChart('container', this.chartOptions)
+      console.log(this.liveData)
+    })
+
+  }
+
+  translator (countryCode: string) {
+    switch (countryCode) {
+      case 'afg': return 'af'
+      case 'dza': return 'dz'
+      case 'alb': return 'al'
+      default: return countryCode
+    }
   }
 
 }

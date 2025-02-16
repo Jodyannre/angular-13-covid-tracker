@@ -25,8 +25,12 @@ export class DataService {
     return this.http.get(`${this.apiUrl}/reports?date=${date}&iso=${country}&per_page=20`)
   }
 
+  fetchDataCountriesRaw() {
+    return this.http.get(`${this.apiUrl}/reports?&per_page=30`)
+  }
+
   fetchDataCountries() {
-    const res = this.http.get(`${this.apiUrl}/reports?&per_page=20`)
+    const res = this.http.get(`${this.apiUrl}/reports?&per_page=30`)
     .pipe(
       map((res: any) => {
         return res.data.filter((item:any) => {
